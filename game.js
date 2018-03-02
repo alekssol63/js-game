@@ -5,17 +5,13 @@ class Vector {
     this.y = y;
   }
   plus(vector) {
-	  try {
-      if (!(vector instanceof	Vector)){
-		    throw new Error('Можно прибавлять к вектору только вектор типа Vector');
-	    } else {
-        return new Vector(this.x + vector.x, this.y + vector.y);  
-	    }	  
-	  } catch(e){
-		  console.log(e.message);
+    if (!(vector instanceof Vector)) {
+      throw new Error('Можно прибавлять к вектору только вектор типа Vector');
+    } else {
+      return new Vector(this.x + vector.x, this.y + vector.y);
     }
   }
-  times(number){
+  times(number) {
     return new Vector(this.x * number, this.y * number);
   }
 }
