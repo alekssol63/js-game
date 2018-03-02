@@ -50,7 +50,7 @@ class Actor {
     if (actor === this) {
       return false;
     } else {
-      if (this.left > actor.right || this.right < actor.left || this.top > actor.bottom || this.bottom < actor.top) {
+      if (this.left >= actor.right || this.right <= actor.left || this.top >= actor.bottom || this.bottom <= actor.top) {
         return false;
       } else return true; 
     }   
