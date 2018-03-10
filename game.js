@@ -81,16 +81,15 @@ function getPlayer(actors) {
 }
 
 class Level {
-	constructor(grid = [], actors = []){
-		this.grid = grid;
-		this.actors  = actors;
-		this.player = getPlayer(actors);
-		this.height = gridHeigth(grid);
-		this.width  = getMaxLength(grid);
-		this.status = null;
-		this.finishDelay = 1;
-       
-	}
+  constructor(grid = [], actors = []){
+    this.grid = grid;
+    this.actors  = actors;
+    this.player = getPlayer(actors);
+    this.height = gridHeigth(grid);
+    this.width  = getMaxLength(grid);
+    this.status = null;
+    this.finishDelay = 1;     
+  }
   isFinished() {
     return (this.status !== null) && (this.finishDelay < 0)
   }
@@ -127,12 +126,12 @@ class Level {
     }
   }
   removeActor(actor) {
-	  if (this.actors.indexOf(actor) !== -1) {
+    if (this.actors.indexOf(actor) !== -1) {
       this.actors.splice(this.actors.indexOf(actor), 1);
-		  if (this.actors.indexOf(actor)==-1) { 
+      if (this.actors.indexOf(actor)==-1) { 
         this.status = 'won';
-		  }  
-		} 	
+      }  
+    } 	
   }
   
  noMoreActors(actorType) {
