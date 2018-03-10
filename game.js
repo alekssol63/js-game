@@ -134,21 +134,20 @@ class Level {
     } 	
   }
   
- noMoreActors(actorType) {
-   let result = this.actors.find(value =>  value.type == actorType); 
-	 return result === undefined
-	}
-
-	playerTouched(objectName, actor) {  
-	  switch(objectName) {
-		  case('lava'): this.status = 'lost';
-		  break;
-		  case('fireball'): this.status = 'lost';
-		  break;
-		  case('coin'):this.removeActor(actor);
-		  break;
-		}
-	}
+  noMoreActors(actorType) {
+    let result = this.actors.find(value =>  value.type == actorType); 
+    return result === undefined
+  }
+  playerTouched(objectName, actor) {  
+    switch(objectName) {
+      case('lava'): this.status = 'lost';
+      break;
+      case('fireball'): this.status = 'lost';
+      break;
+      case('coin'):this.removeActor(actor);
+      break;
+    }
+  }
 }
 
 
