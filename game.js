@@ -214,44 +214,34 @@ class LevelParser {
   }
 */
 	
-createActors(arrayOfActors) {
-  let result = [];
-  let res = [];
-    if (arrayOfActors.length === 0 || this.dictionary === undefined) {
-      return []
-    } else {
-      for(let el in arrayOfActors){
-        for(let index in arrayOfActors[el]) {
-          let current = arrayOfActors[el][index];
-          if ((this.actorFromSymbol(current)!= undefined) &&
-              (this.dictionary[current] instanceof Function)
-			  
-             ) {
-                 let actorConstructor = this.actorFromSymbol(current)
-                 let x = index;
-		 let y = el
-                 result.push(new actorConstructor(new Vector(x, y)));
-			
-               } else continue
-        }
-      }
-    }
-    return result
-}	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-  parse(arrayOfStrings) {
-    return new Level()
-  }
-
+ createActors(arrayOfActors) {
+   let result = [];
+   let res = [];
+     if (arrayOfActors.length === 0 || this.dictionary === undefined) {
+       return [];
+     } else {
+       for (let el in arrayOfActors) {
+         for(let index in arrayOfActors[el]) {
+           let current = arrayOfActors[el][index];
+           if ((this.actorFromSymbol(current)!= undefined) &&
+               (this.dictionary[current] instanceof Function)	  
+              ) {
+                  let actorConstructor = this.actorFromSymbol(current)
+                  let x = index;
+		  let y = el
+                  result.push(new actorConstructor(new Vector(x, y)));	
+                } else continue
+         }
+       }
+     }
+     return result
+ }	
+ parse(arrayOfStrings) {
+   let grid, actors;  
+   grid  = this.createGrid(arrayOfStrings)
+   actors = this.createActors(arrayOfStrings)
+   return new Level(grid, actors)
+ }
 
 }
 
