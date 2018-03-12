@@ -63,8 +63,8 @@ function getMaxLength(grid) {
       return grid.reduce(function(memo, current) { 
         if (current.length > memo) {
           memo = current.length;
-	      }
-	      return memo;
+	}
+	return memo;
       }, grid[0].length)
     } else return grid.length
   } else return 0;  
@@ -178,17 +178,12 @@ class LevelParser {
             switch(value) {
               case('x'):return 'wall';
               case('!'):return 'lava';
-              case('@'):return 'player';
-              case('o'):return 'coin';
-              case('='):return 'HorizontalFireBall';
-              case('|'):return 'VerticalFireBall';
-              case('v'):return 'FireRain';
               default: return undefined
             }
           })
         })
         return result		  
-      } 	
+    }  	  
   }
 
 /*
