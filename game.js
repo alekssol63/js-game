@@ -219,7 +219,8 @@ class LevelParser {
          for(let index in arrayOfActors[el]) {
            let current = arrayOfActors[el][index];
            if ((this.actorFromSymbol(current)!= undefined) &&
-               (this.dictionary[current] instanceof Function)	  
+               (this.dictionary[current] instanceof Function) &&
+	       (this.dictionary[current] instanceof Actor)
               ) {
                   let actorConstructor = this.actorFromSymbol(current)
                   let x = index;
