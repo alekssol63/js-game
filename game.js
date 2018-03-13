@@ -186,51 +186,34 @@ class LevelParser {
     }  	  
   }
 
-/*
-  createActors(arrayOfActors) {
-    if (arrayOfActors.length === 0 || this.dictionary === undefined) {
-      return []
-    } else {
-      let newSymbol;
-      let result = arrayOfActors.map(item=> {
-        if (! (item in this.dictionary)) {
-          return 'undefined';
-        } else if (! (this.dictionary[item] instanceof Function)) {
-          return 'undefined';
-        } else {
-          newSymbol = this.actorFromSymbol(item); 
-          return new newSymbol
-        }
-      })
-      if (result[0]=='undefined') {
-        return [];
-      } else return result		
-    }
-  }
-*/
-	
-  createActors(arrayOfActors) {
+createActors(arrayOfActors) {
     let result = [];
-    let res = [];
-    if (arrayOfActors.length === 0 || this.dictionary === undefined) {
-      return [];
-    } else {
-      for (let el in arrayOfActors) {
-        for (let index in arrayOfActors[el]) {
-          let current = arrayOfActors[el][index];
-          let actorConstructor = this.actorFromSymbol(current)
-          if ((actorConstructor != undefined) &&
-              (this.dictionary[current] instanceof Function) &&
-	      (new actorConstructor instanceof Actor)
-             ) { 
-                 let x = index;
-		 let y = el;
-	         result.push(new actorConstructor(new Vector(x, y)));		  
-               } else continue
-        }
-      }
-     }
-     return result
+   let res = [];
+     if (arrayOfActors.length === 0 || this.dictionary === undefined) {
+       return [];
+     } else {
+		 arrayOfActors.forEach((el,yCoord)=>{
+		   el = el.split('')
+		   
+			 el.forEach((index, xCoord)=>{
+			   console.log(index)
+				 
+		     let actorConstructor = this.actorFromSymbol(index)
+		     console.log(actorConstructor)
+           if ((actorConstructor !== undefined) &&
+               (this.dictionary[index] instanceof Function) &&
+			   (new actorConstructor instanceof Actor)
+              ) {
+                  
+                  let x = xCoord;
+		          let y = yCoord;
+				  result.push(new actorConstructor(new Vector(x, y)));
+				  
+                } else{}
+			 })
+		 })
+	 }	
+     return result	 
   }		
 
  parse(arrayOfStrings) {
