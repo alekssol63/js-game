@@ -116,9 +116,9 @@ class Level {
           return 'wall';
         } else if (obstacle[0] === 'lava') {
           return 'lava';
+        } 
     } 
-  } 
-	  
+  }	  
   removeActor(actor) {
     this.actors.splice(this.actors.indexOf(actor), 1); 
   }
