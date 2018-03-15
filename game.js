@@ -118,13 +118,9 @@ class Level {
       return 'lava';
     } 
   } 
-  
+	  
   removeActor(actor) {
-    console.log(this.status)
-    this.actors.splice(this.actors.indexOf(actor), 1);
-      if (this.actors.indexOf(actor) == -1) { 
-        this.status = 'won';
-      }   	
+    this.actors.splice(this.actors.indexOf(actor), 1); 
   }
   
   noMoreActors(actorType) {
@@ -138,7 +134,12 @@ class Level {
       break;
       case('fireball'): this.status = 'lost';
       break;
-      case('coin'): this.removeActor(actor);
+      case('coin'): {
+        this.removeActor(actor);
+        if (this.noMoreActors('coin')) {
+	  this.status = 'won';
+        }
+      }  
       break;
     }
   }
