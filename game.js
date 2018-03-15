@@ -107,15 +107,15 @@ class Level {
     } else if((posX < 0) || (posX + sizeX > this.grid[posY].length)) {
       return 'wall'
     } else {
-      let obstacle = this.grid[posY].slice(posX, posX + sizeX);  
-      if (obstacle === undefined) {
-      return obstacle;
-    } else if (obstacle.length === 0) {
-      return 'wall'; 
-    } else if (obstacle[0] === 'wall') {
-      return 'wall';
-    } else if (obstacle[0] === 'lava') {
-      return 'lava';
+        let obstacle = this.grid[posY].slice(posX, posX + sizeX);  
+        if (obstacle === undefined) {
+          return obstacle;
+        } else if (obstacle.length === 0) {
+          return 'wall'; 
+        } else if (obstacle[0] === 'wall') {
+          return 'wall';
+        } else if (obstacle[0] === 'lava') {
+          return 'lava';
     } 
   } 
 	  
