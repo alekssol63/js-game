@@ -102,7 +102,7 @@ class Level {
       throw new Error ('Может быть передан только объект класса Vector')
     } else if ((posY  > this.height) || (posY + sizeY > this.height)) {
       return 'lava';
-    } else if (posY <= 0) {
+    } else if (posY < 0) {
       return 'wall';
     } else if((posX < 0) || (posX + sizeX > this.grid[posY].length)) {
       return 'wall'
