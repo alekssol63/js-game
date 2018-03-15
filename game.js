@@ -97,27 +97,27 @@ class Level {
     const posY = Math.ceil(pos.y);
     const posX = Math.ceil(pos.x);
     const sizeX = Math.ceil(size.x);
-    let obstacle;
-    if (!(pos instanceof Vector) ||!(size instanceof Vector)) {
-      throw new Error('Может быть передан только объект класса Vector')
+    const sizeY = Math.ceil(size.y);
+    if (!(pos instanceof Vector) || !(size instanceof Vector)) {
+      throw new Error ('Может быть передан только объект класса Vector')
+    } else if ((posY  > this.height) || (posY + sizeY > this.height)) {
+      return 'lava';
+    } else if (posY < 0) {
+      return 'wall';
+    } else if((posX < 0) || (posX + sizeX > this.grid[posY].length)) {
+      return 'wall'
     } else {
-      if (posY < 0) {
-        return 'wall';
-      } else if (posY == this.grid.length) {
-        return 'lava';
-      }
-      obstacle = this.grid[posY].slice(posX, posX + sizeX)
+      let obstacle = this.grid[posY].slice(posX, posX + sizeX);  
       if (obstacle === undefined) {
-        return obstacle;
-      } else if (obstacle.length === 0) {
-        return 'wall'; 
-      } else if (obstacle[0] === 'wall') {
-        return 'wall';
-      } else if (obstacle[0] === 'lava') {
-        return 'lava';
-      }
-    }
-  }
+      return obstacle;
+    } else if (obstacle.length === 0) {
+      return 'wall'; 
+    } else if (obstacle[0] === 'wall') {
+      return 'wall';
+    } else if (obstacle[0] === 'lava') {
+      return 'lava';
+    } 
+  } 
   
   removeActor(actor) {
     console.log(this.status)
@@ -321,17 +321,6 @@ class Player extends Actor {
   }
 }
 
-const schema = [
-  '                             ',
-   '=                           ',
-   '                            ',
-   '                            ',
-   ' @                          ',
-   'xxx   oo                    ',
-   '      xxx    |  o           ',
-  '             xxxxx           '
- 
-];
 const actorDict = {
   '@': Player,
   '=': HorizontalFireball,
@@ -339,13 +328,12 @@ const actorDict = {
   'o': Coin,
   'v': FireRain
 }
-const parser = new LevelParser(actorDict);
-const level = parser.parse(schema);
-runLevel(level, DOMDisplay)
-  .then(status => alert(`Игрок ${status}`));
-
-
-
+loadLevels()
+  .then(function(resolved) {
+    const parser = new LevelParser(actorDict);
+    runGame(JSON.parse(resolved), parser, DOMDisplay)
+      .then(() => alert('Вы выиграли приз!'));
+  })
 
 
 
