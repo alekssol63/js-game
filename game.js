@@ -95,8 +95,8 @@ class Level {
   }
   obstacleAt(pos, size) {
     const posY = Math.ceil(pos.y);
-    const posX = Math.ceil(pos.x);
-    const sizeX = Math.ceil(size.x);
+    const posX = Math.round(pos.x);
+    const sizeX = Math.round(size.x);
     const sizeY = Math.ceil(size.y);
     if (!(pos instanceof Vector) || !(size instanceof Vector)) {
       throw new Error ('Может быть передан только объект класса Vector');
