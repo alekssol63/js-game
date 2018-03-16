@@ -100,7 +100,7 @@ class Level {
     const sizeY = Math.ceil(size.y);
     if (!(pos instanceof Vector) || !(size instanceof Vector)) {
       throw new Error ('Может быть передан только объект класса Vector');
-    } else if ((posY  > this.height) || (posY + sizeY > this.height)) {
+    } else if (posY + sizeY > this.height) {
       return 'lava';
     } else if (posY < 0) {
       return 'wall';
