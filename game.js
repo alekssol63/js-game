@@ -93,32 +93,27 @@ class Level {
       return this.actors.find((item)=>{return actor.isIntersect(item)});
     }
   }
+	
   obstacleAt(pos, size) {
-    const posY = Math.ceil(pos.y);
-    const posX = Math.round(pos.x);
-    const sizeX = Math.round(size.x);
-    const sizeY = Math.ceil(size.y);
     if (!(pos instanceof Vector) || !(size instanceof Vector)) {
-      throw new Error ('Может быть передан только объект класса Vector');
-    } else if (posY + sizeY > this.height) {
-      return 'lava';
-    } else if (posY < 0) {
-      return 'wall';
-    } else if((posX < 0) || (posX + sizeX > this.grid[posY].length)) {
-      return 'wall';
-    } else {
-        let obstacle = this.grid[posY].slice(posX, posX + sizeX);  
-        if (obstacle === undefined) {
-          return obstacle;
-        } else if (obstacle.length === 0) {
-          return 'wall'; 
-        } else if (obstacle[0] === 'wall') {
-          return 'wall';
-        } else if (obstacle[0] === 'lava') {
-          return 'lava';
-        } 
-    } 
-  }	  
+      throw new Error('Может быть передан только объект класса Vector');
+    }
+    let left = Math.round(pos.x);
+    let right = Math.ceil(pos.x + size.x);
+    let up =  Math.round(pos.y);
+    let down = Math.ceil(pos.y + size.y);
+  
+    if ((left < 0 || up < 0)|| (right > this.width)) return 'wall';
+    if(down >= this.height) return 'lava';
+    for(let i = up; i < down; i++) {
+      for(let j = left; j < right; j++) {
+        if(this.grid[i][j] !== undefined) {
+          return this.grid[i][j];
+        }
+      }
+    }	
+  }
+	
   removeActor(actor) {
     this.actors.splice(this.actors.indexOf(actor), 1); 
   }
