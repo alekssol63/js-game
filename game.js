@@ -103,7 +103,7 @@ class Level {
     let up =  Math.round(pos.y);
     let down = Math.ceil(pos.y + size.y);
   
-    if ((left < 0 || up < 0)|| (right > this.width)) return 'wall';
+    if (left < 0 || up < 0 || right > this.width) return 'wall';
     if (down > this.height) return 'lava';
     for(let i = up; i < down; i++) {
       for(let j = left; j < right; j++) {
