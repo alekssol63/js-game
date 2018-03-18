@@ -104,7 +104,7 @@ class Level {
     let down = Math.ceil(pos.y + size.y);
   
     if ((left < 0 || up < 0)|| (right > this.width)) return 'wall';
-    if(down > this.height) return 'lava';
+    if (down > this.height) return 'lava';
     for(let i = up; i < down; i++) {
       for(let j = left; j < right; j++) {
         if(this.grid[i][j] !== undefined) {
