@@ -108,7 +108,7 @@ class Level {
   }
 	
   removeActor(actor) {
-    if (this.actors.indexOf(actor)) {
+    if (this.actors.includes(actor)) {
       this.actors.splice(this.actors.indexOf(actor), 1);
     }	    
   }
@@ -138,7 +138,7 @@ class Level {
 
 class LevelParser {
   constructor(dictionary = []) {
-    this.dictionary = [...dictionary];
+    this.dictionary = dictionary;
   }
   actorFromSymbol(symbol) {
     if (!symbol) {
@@ -191,10 +191,8 @@ class LevelParser {
   }		
 
   parse(arrayOfStrings) {
-    const grid;
-    const actors;  
-    grid  = this.createGrid(arrayOfStrings);
-    actors = this.createActors(arrayOfStrings);
+    const grid = this.createGrid(arrayOfStrings);
+    const actors = this.createActors(arrayOfStrings);  
     return new Level(grid, actors);
   }
 
