@@ -183,7 +183,7 @@ class LevelParser {
                     let x = xCoord;
                     let y = yCoord;
                     result.push(new actorConstructor(new Vector(x, y))); 
-                }
+                 }
         });
       });
     }	
