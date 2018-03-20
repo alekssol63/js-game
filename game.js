@@ -204,7 +204,9 @@ class Fireball extends Actor {
     this.pos = pos;
     this.speed = speed;
   }	
-	
+  get type() {
+    return 'fireball';
+  }
   getNextPosition(time = 1) {
     return this.pos.plus(this.speed.times(time));
   }
