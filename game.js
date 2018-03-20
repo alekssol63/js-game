@@ -190,8 +190,8 @@ class LevelParser {
                 (actorConstructor instanceof Function) &&
                 (new actorConstructor instanceof Actor)
                ) {
-                    let x = xCoord;
-                    let y = yCoord;
+                    const x = xCoord;
+                    const y = yCoord;
                     result.push(new actorConstructor(new Vector(x, y))); 
                  }
         });
