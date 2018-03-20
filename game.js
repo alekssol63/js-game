@@ -108,12 +108,14 @@ class Level {
   }
 	
   removeActor(actor) {
-    this.actors.splice(this.actors.indexOf(actor), 1); 
+    if (this.actors.indexOf(actor)) {
+      this.actors.splice(this.actors.indexOf(actor), 1);
+    }	    
   }
   
   noMoreActors(actorType) {
-    let result = this.actors.find(value => value.type == actorType); 
-    return result === undefined;
+    let result = this.actors.some(value => value.type == actorType); 
+    return result === false;
   }
   
   playerTouched(objectName, actor) {  
@@ -135,8 +137,8 @@ class Level {
 
 
 class LevelParser {
-  constructor(dictionary) {
-    this.dictionary = dictionary;
+  constructor(dictionary = []) {
+    this.dictionary = [...dictionary];
   }
   actorFromSymbol(symbol) {
     if (!symbol) {
