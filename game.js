@@ -52,18 +52,15 @@ class Actor {
   }
 }
 
-function getMaxLength(grid) {
-  if (grid.length) {
-    if (Array.isArray(grid[0])) {
-      return grid.reduce(function(memo, current) { 
-        if (current.length > memo) {
-          memo = current.length;
-	}
-	return memo;
-      }, grid[0].length);
-    } else return grid.length;
-  } else return 0;  
-}
+function getMaxLength(grid = 0) {
+  if (grid.length === 0) {
+    return 0;
+  } 	
+  const length = grid.map(item => {
+    return item.length;
+  });
+  return Math.max(...length);
+}	
 
 class Level {
   constructor(grid = [], actors = []){
