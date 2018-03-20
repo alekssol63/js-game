@@ -98,7 +98,7 @@ class Level {
     if (!(pos instanceof Vector) || !(size instanceof Vector)) {
       throw new Error('Может быть передан только объект класса Vector');
     }
-    let left = Math.round(pos.x);
+    let left = Math.floor(pos.x);
     let right = Math.ceil(pos.x + size.x);
     let up =  Math.round(pos.y);
     let down = Math.ceil(pos.y + size.y);
