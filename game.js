@@ -177,13 +177,13 @@ class LevelParser {
         el.forEach((index, xCoord)=> {
           let actorConstructor = this.actorFromSymbol(index);  
             if ((actorConstructor !== undefined) &&
-                (this.dictionary[index] instanceof Function) &&
+                (actorConstructor instanceof Function) &&
                 (new actorConstructor instanceof Actor)
                ) {
                     let x = xCoord;
                     let y = yCoord;
                     result.push(new actorConstructor(new Vector(x, y))); 
-                } else {}
+                }
         });
       });
     }	
@@ -191,7 +191,8 @@ class LevelParser {
   }		
 
   parse(arrayOfStrings) {
-    let grid, actors;  
+    const grid;
+    const actors;  
     grid  = this.createGrid(arrayOfStrings);
     actors = this.createActors(arrayOfStrings);
     return new Level(grid, actors);
@@ -200,24 +201,18 @@ class LevelParser {
 }
 
 class Fireball extends Actor {
-  constructor(pos = new Vector(0, 0), speed  = new Vector(0, 0) ) {
-    super();	
-    this.pos = pos;
-    this.speed = speed;
-    this.size = new Vector(1,1);
-  }
   get type() {
     return 'fireball';
   }
+	
   getNextPosition(time = 1) {
-    let newX = this.pos.x + this.speed.x * time;
-    let newY = this.pos.y + this.speed.y * time;
-    return new Vector(newX, newY);
+    return this.pos.plus(this.speed.times(time));
   }
+	
   handleObstacle() {
-    this.speed.x = - this.speed.x;
-    this.speed.y = - this.speed.y;
+    this.speed = this.speed.times(-1);
   }
+	
   act(time, level) {
     let position = this.getNextPosition(time);
     let result = level.obstacleAt(position, this.size);
@@ -230,30 +225,24 @@ class Fireball extends Actor {
 }
 
 class HorizontalFireball extends Fireball {
-  constructor(pos = new Vector(0, 0), speed  = new Vector(2, 0) ) {
+  constructor(pos = new Vector(0, 0)) {
     super();	
-    this.pos = pos;
-    this.speed = speed;
-    this.size = new Vector(1,1);
+    this.speed = new Vector(2, 0); 
   }
 }
 
 class VerticalFireball extends Fireball {
-  constructor(pos = new Vector(0, 0), speed  = new Vector(0, 2) ) {
+  constructor(pos = new Vector(0, 0)) {
     super();	
-    this.pos = pos;
-    this.speed = speed;
-    this.size = new Vector(1,1);
+    this.speed = new Vector(0, 2);
   }
 }
 
 class FireRain extends Fireball {
-  constructor(pos = new Vector(0, 0), speed  = new Vector(0, 3) ) {
+  constructor(pos = new Vector(0, 0)) {
     super();
     this.start = pos;
-    this.pos = pos;
-    this.speed = speed;
-    this.size = new Vector(1,1);
+    this.speed = new Vector(0, 3);
   }
   handleObstacle() {
     return this.pos = this.start;
