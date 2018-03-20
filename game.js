@@ -199,9 +199,11 @@ class LevelParser {
 }
 
 class Fireball extends Actor {
-  get type() {
-    return 'fireball';
-  }
+  constructor(pos = new Vector(0, 0), speed  = new Vector(0, 0) ) {
+    super();  
+    this.pos = pos;
+    this.speed = speed;
+  }	
 	
   getNextPosition(time = 1) {
     return this.pos.plus(this.speed.times(time));
