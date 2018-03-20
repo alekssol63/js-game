@@ -64,8 +64,8 @@ function getMaxLength(grid = 0) {
 
 class Level {
   constructor(grid = [], actors = []){
-    this.grid = grid;
-    this.actors  = actors;
+    this.grid = [...grid];
+    this.actors  = [...actors];
     this.player = actors.find(value => value.type === 'player');
     this.height = grid.length;
     this.width  = getMaxLength(grid);
