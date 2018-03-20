@@ -73,12 +73,7 @@ class Level {
     this.finishDelay = 1;     
   }
   isFinished() {
-    if ((this.status !== null) && (this.finishDelay < 0)) {
-		  return true;
-	  } else if((this.status !== null) && (this.finishDelay > 0)) {
-		  return false;
-	  }
-	  return false;
+    return (this.status !== null) && (this.finishDelay < 0);
   }
   actorAt(actor) {
     if (!(actor instanceof Actor)) {
