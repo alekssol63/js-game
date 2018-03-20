@@ -4,12 +4,14 @@ class Vector {
     this.x = x;
     this.y = y;
   }
+	
   plus(vector) {
     if (!(vector instanceof Vector)) {
       throw new Error('Можно прибавлять к вектору только вектор типа Vector');
     } 
     return new Vector(this.x + vector.x, this.y + vector.y);
   }
+	
   times(number) {
     return new Vector(this.x * number, this.y * number);
   }
@@ -24,23 +26,30 @@ class Actor {
     this.size = size;
     this.speed = speed;
   }
+	
   act() {
   }
+	
   get type() {
     return 'actor';
   }
+	
   get left() {
     return this.pos.x;
   }
+	
   get right() {
     return this.pos.x + this.size.x;
   }
+	
   get bottom() {
     return this.pos.y + this.size.y;
   }
+	
   get top() {
     return this.pos.y;
   }
+	
   isIntersect(actor) {
     if (!(actor instanceof  Actor)){
       throw new Error('Неправильный аргумент');
@@ -80,8 +89,7 @@ class Level {
       throw new Error ('Неправильный аргумент');
     }
     return this.actors.find(item => actor.isIntersect(item));
-  }
-	
+  }	
   obstacleAt(pos, size) {
     if (!(pos instanceof Vector) || !(size instanceof Vector)) {
       throw new Error('Может быть передан только объект класса Vector');
@@ -135,11 +143,11 @@ class Level {
   }
 }
 
-
 class LevelParser {
   constructor(dictionary = []) {
     this.dictionary = dictionary;
   }
+	
   actorFromSymbol(symbol) {
     if (!symbol) {
       return undefined;
@@ -147,12 +155,14 @@ class LevelParser {
       return this.dictionary[symbol];
     }  
   }
+	
   obstacleFromSymbol(symbol) {
     switch (symbol) {
       case('x'): return 'wall';
       case('!'): return 'lava';
     }
   }
+	
   createGrid(strings = []) {
     let result =  strings.map(function(item) {
       let arr = item.split('');
@@ -203,10 +213,12 @@ class Fireball extends Actor {
     super();  
     this.pos = pos;
     this.speed = speed;
-  }	
+  }
+	
   get type() {
     return 'fireball';
   }
+	
   getNextPosition(time = 1) {
     return this.pos.plus(this.speed.times(time));
   }
@@ -249,6 +261,7 @@ class FireRain extends Fireball {
     this.start = pos;
     this.speed = new Vector(0, 3);
   }
+	
   handleObstacle() {
     return this.pos = this.start;
   }
@@ -297,6 +310,7 @@ class Player extends Actor {
     this.pos.y -= 0.5;
     this.size = new Vector(0.8, 1.5);
   }
+	
   get type() {
     return 'player';
   }
