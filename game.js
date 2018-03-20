@@ -153,22 +153,18 @@ class LevelParser {
       case('!'): return 'lava';
     }
   }
-  createGrid(strings) {
-    if (strings.length === 0) {
-      return [];
-    } else if (strings) {
-        let result =  strings.map(function(item) {
-          let arr = item.split('');
-          return arr.map(function(value) {
-            switch(value) {
-              case('x'):return 'wall';
-              case('!'):return 'lava';
-              default: return undefined;
-            }
-          });
-        });
-      return result;		  
-    }  	  
+  createGrid(strings = []) {
+    let result =  strings.map(function(item) {
+      let arr = item.split('');
+      return arr.map(function(value) {
+        switch(value) {
+          case('x'):return 'wall';
+          case('!'):return 'lava';
+          default: return undefined;
+        }
+      });
+    });
+    return result;		    	  
   }
 
   createActors(arrayOfActors) {
