@@ -7,9 +7,8 @@ class Vector {
   plus(vector) {
     if (!(vector instanceof Vector)) {
       throw new Error('Можно прибавлять к вектору только вектор типа Vector');
-    } else {
-      return new Vector(this.x + vector.x, this.y + vector.y);
-    }
+    } 
+    return new Vector(this.x + vector.x, this.y + vector.y);
   }
   times(number) {
     return new Vector(this.x * number, this.y * number);
@@ -26,7 +25,6 @@ class Actor {
     this.speed = speed;
   }
   act() {
-    return; 
   }
   get type() {
     return 'actor';
@@ -49,9 +47,8 @@ class Actor {
     }
     if (actor === this) {
       return false;
-    } else {
-      return !(this.left >= actor.right || this.right <= actor.left || this.top >= actor.bottom || this.bottom <= actor.top); 
-    }   
+    } 
+    return !(this.left >= actor.right || this.right <= actor.left || this.top >= actor.bottom || this.bottom <= actor.top);  
   }
 }
 
