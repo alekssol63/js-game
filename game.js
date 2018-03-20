@@ -78,26 +78,30 @@ class Level {
   actorAt(actor) {
     if (!(actor instanceof Actor)) {
       throw new Error ('Неправильный аргумент');
-    } else {
-      return this.actors.find((item)=>{return actor.isIntersect(item)});
     }
+    return this.actors.find(item => actor.isIntersect(item));
   }
 	
   obstacleAt(pos, size) {
     if (!(pos instanceof Vector) || !(size instanceof Vector)) {
       throw new Error('Может быть передан только объект класса Vector');
     }
-    let left = Math.floor(pos.x);
-    let right = Math.ceil(pos.x + size.x);
-    let up =  Math.round(pos.y);
-    let down = Math.ceil(pos.y + size.y);
+    const left = Math.floor(pos.x);
+    const right = Math.ceil(pos.x + size.x);
+    const up =  Math.round(pos.y);
+    const down = Math.ceil(pos.y + size.y);
   
-    if (left < 0 || up < 0 || right > this.width) return 'wall';
-    if (down > this.height) return 'lava';
+    if (left < 0 || up < 0 || right > this.width) { 
+      return 'wall';
+    }	    
+    if (down > this.height) {
+      return 'lava';
+    }	    
     for(let i = up; i < down; i++) {
       for(let j = left; j < right; j++) {
-        if(this.grid[i][j] !== undefined) {
-          return this.grid[i][j];
+	let point = this.grid[i][j];     
+        if (point !== undefined) {
+          return point;
         }
       }
     }	
