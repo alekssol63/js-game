@@ -138,8 +138,8 @@ class Level {
 }
 
 class LevelParser {
-  constructor(dictionary = []) {
-    this.dictionary = dictionary;
+  constructor(dictionary = {}) {
+    this.dictionary = Object.assign({}, dictionary);
   }
 	
   actorFromSymbol(symbol) {
