@@ -57,18 +57,12 @@ class Actor {
     if (actor === this) {
       return false;
     } 
-    return (this.left < actor.right) && (this.right > actor.left) && (this.top < actor.bottom) && (this.bottom > actor.top);  
+    return this.left < actor.right && this.right > actor.left && this.top < actor.bottom && this.bottom > actor.top;  
   }
 }
 
-function getMaxLength(grid = 0) {
-  if (grid.length === 0) {
-    return 0;
-  } 	
-  const length = grid.map(item => {
-    return item.length;
-  });
-  return Math.max(...length);
+function getMaxLength(grid = []) {
+  return Math.max(0, ...grid.map(item => item.length));
 }	
 
 class Level {
