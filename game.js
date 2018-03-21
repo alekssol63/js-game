@@ -154,7 +154,7 @@ class LevelParser {
   }
 	
   createGrid(strings = []) {
-    let result =  strings.map(function(item) {
+    const result =  strings.map(function(item) {
       let arr = item.split('');
       return arr.map(function(value) {
         switch(value) {
