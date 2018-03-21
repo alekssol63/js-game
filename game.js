@@ -199,10 +199,9 @@ class LevelParser {
 }
 
 class Fireball extends Actor {
-  constructor(pos = new Vector(0, 0), speed  = new Vector(0, 0) ) {
-    super();  
-    this.pos = pos;
-    this.speed = speed;
+  constructor(pos = new Vector(0, 0), speed = new Vector(0, 0)) {
+    const size = new Vector(1, 1);  
+    super(pos, size, speed); 
   }
 	
   get type() {
@@ -230,26 +229,23 @@ class Fireball extends Actor {
 
 class HorizontalFireball extends Fireball {
   constructor(pos = new Vector(0, 0)) {
-    super();
-    this.pos = pos;  
-    this.speed = new Vector(2, 0); 
+    const speed =  new Vector(2, 0);  
+    super(pos, speed); 
   }
 }
 
 class VerticalFireball extends Fireball {
   constructor(pos = new Vector(0, 0)) {
-    super();
-    this.pos = pos;	  
-    this.speed = new Vector(0, 2);
+    const speed = new Vector(0, 2);
+    super(pos, speed);
   }
 }
 
 class FireRain extends Fireball {
   constructor(pos = new Vector(0, 0)) {
-    super();
-    this.pos = pos;  
+    const speed =  new Vector(0, 3); 
+    super(pos, speed);
     this.start = pos;
-    this.speed = new Vector(0, 3);
   }
 	
   handleObstacle() {
@@ -264,12 +260,12 @@ function random(min, max) {
 
 class Coin extends Actor{
   constructor(pos = new Vector(0, 0)) {
-    super();
+    const size = new Vector(0.6, 0.6); 
+    super(pos,size);
     this.base = pos;
-    this.pos = pos;
     this.pos.x += 0.2;
     this.pos.y += 0.1;
-    this.size = new Vector(0.6, 0.6);
+	  
     this.springSpeed = 8;
     this.springDist = 0.07;
     this.spring = random(0, 2 * Math.PI);
@@ -302,10 +298,9 @@ class Coin extends Actor{
 }
 class Player extends Actor {
   constructor(pos = new Vector(0, 0)) {
-    super();
-    this.pos = pos;
+    const size = new Vector(0.8, 1.5); 
+    super(pos, size);
     this.pos.y -= 0.5;
-    this.size = new Vector(0.8, 1.5);
   }
 	
   get type() {
