@@ -110,9 +110,10 @@ class Level {
   }
 	
   removeActor(actor) {
-    if (this.actors.includes(actor)) {
-      this.actors.splice(this.actors.indexOf(actor), 1);
-    }	    
+    const pos = this.actors.indexOf(actor);
+    if (pos !== -1) {
+      this.actors.splice(pos, 1);
+    }	    	    
   }
   
   noMoreActors(actorType) {
@@ -154,17 +155,7 @@ class LevelParser {
   }
 	
   createGrid(strings = []) {
-    const result =  strings.map(function(item) {
-      let arr = item.split('');
-      return arr.map(function(value) {
-        switch(value) {
-          case('x'):return 'wall';
-          case('!'):return 'lava';
-          default: return undefined;
-        }
-      });
-    });
-    return result;		    	  
+    return strings.map(item => item.split('').map(value => this.obstacleFromSymbol(value)));	    	  
   }
 
   createActors(arrayOfActors) {
