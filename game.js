@@ -267,6 +267,7 @@ function random(min, max) {
   const diff = max - min + 1; 
   return Math.floor(Math.random() * diff) + min;
 }
+
 class Coin extends Actor{
   constructor(pos = new Vector(0, 0)) {
     super();
@@ -279,25 +280,31 @@ class Coin extends Actor{
     this.springDist = 0.07;
     this.spring = random(0, 2 * Math.PI);
   }
+	
   get type() {
     return 'coin';
   }
+	
   updateSpring(time = 1) {
     this.spring = this.spring + this.springSpeed * time;
   }
+	
   getSpringVector() {
     let y = Math.sin(this.spring) * this.springDist;
     return new Vector(0, y);
   }
+	
   getNextPosition(time = 1) {
     this.updateSpring(time);
     let springVector = this.getSpringVector(time);
     springVector.y +=  this.base.y;
     return new Vector(this.base.x, springVector.y);
   }
+	
   act(time) {
     this.pos = this.getNextPosition(time);
   }
+	
 }
 class Player extends Actor {
   constructor(pos = new Vector(0, 0)) {
