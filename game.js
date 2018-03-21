@@ -149,11 +149,7 @@ class LevelParser {
   }
 	
   actorFromSymbol(symbol) {
-    if (!symbol) {
-      return undefined;
-    } else { 
-      return this.dictionary[symbol];
-    }  
+    return this.dictionary[symbol];  
   }
 	
   obstacleFromSymbol(symbol) {
