@@ -169,7 +169,7 @@ class LevelParser {
           let actorConstructor = this.actorFromSymbol(index); 
           if (actorConstructor !== undefined && actorConstructor instanceof Function) {
 	    let theActor = new actorConstructor(new Vector(xCoord, yCoord));	 
-            if(theActor instanceof Actor) {
+            if (theActor instanceof Actor) {
 	      result.push(theActor);
 	    }
           }
