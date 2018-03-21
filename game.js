@@ -172,23 +172,21 @@ class LevelParser {
     if (arrayOfActors.length === 0 || this.dictionary === undefined) {
       return [];
     } else {
-      arrayOfActors.forEach((el,yCoord)=> {
+      arrayOfActors.forEach((el,yCoord) => {
         el = el.split('');
-        el.forEach((index, xCoord)=> {
-          let actorConstructor = this.actorFromSymbol(index);  
-            if ((actorConstructor !== undefined) &&
-                (actorConstructor instanceof Function) &&
-                (new actorConstructor instanceof Actor)
-               ) {
-                    const x = xCoord;
-                    const y = yCoord;
-                    result.push(new actorConstructor(new Vector(x, y))); 
-                 }
+        el.forEach((index, xCoord) => {
+          let actorConstructor = this.actorFromSymbol(index); 
+          if (actorConstructor !== undefined && actorConstructor instanceof Function) {
+	    let theActor = new actorConstructor(new Vector(xCoord, yCoord));	 
+            if(theActor instanceof Actor) {
+	      result.push(theActor);
+	    }
+          }
         });
       });
     }	
     return result;	 
-  }		
+  }
 
   parse(arrayOfStrings) {
     const grid = this.createGrid(arrayOfStrings);
