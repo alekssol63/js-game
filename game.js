@@ -96,7 +96,7 @@ class Level {
     }
     const left = Math.floor(pos.x);
     const right = Math.ceil(pos.x + size.x);
-    const up =  Math.round(pos.y);
+    const up =  Math.floor(pos.y);
     const down = Math.ceil(pos.y + size.y);
   
     if (left < 0 || up < 0 || right > this.width) { 
