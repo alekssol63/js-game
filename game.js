@@ -247,10 +247,10 @@ function random(min, max) {
   return Math.floor(Math.random() * diff) + min;
 }
 
-class Coin extends Actor{
+class Coin extends Actor {
   constructor(pos = new Vector(0, 0)) {
     const size = new Vector(0.6, 0.6); 
-    super(pos,size);
+    super(pos, size);
     this.base = pos;
     this.pos.x += 0.2;
     this.pos.y += 0.1;
