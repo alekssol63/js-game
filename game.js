@@ -251,7 +251,7 @@ class Coin extends Actor {
     const size = new Vector(0.6, 0.6); 
     const position = pos.plus(new Vector(0.2, 0.1));
     super(position, size);
-    this.base = pos;
+    this.base = position;
 	  
     this.springSpeed = 8;
     this.springDist = 0.07;
