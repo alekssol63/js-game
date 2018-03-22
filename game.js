@@ -268,13 +268,13 @@ class Coin extends Actor {
   }
 	
   getSpringVector() {
-    let y = Math.sin(this.spring) * this.springDist;
+    const y = Math.sin(this.spring) * this.springDist;
     return new Vector(0, y);
   }
 	
   getNextPosition(time = 1) {
     this.updateSpring(time);
-    let springVector = this.getSpringVector(time);
+    const springVector = this.getSpringVector(time);
     springVector.y +=  this.base.y;
     return new Vector(this.base.x, springVector.y);
   }
