@@ -249,9 +249,8 @@ function random(min, max) {
 class Coin extends Actor {
   constructor(pos = new Vector(0, 0)) {
     const size = new Vector(0.6, 0.6); 
-    pos.x += 0.2;
-    pos.y += 0.1;
-    super(pos, size);
+    const position = pos.plus(new Vector(0.2, 0.1));
+    super(position, size);
     this.base = pos;
 	  
     this.springSpeed = 8;
@@ -287,8 +286,8 @@ class Coin extends Actor {
 class Player extends Actor {
   constructor(pos = new Vector(0, 0)) {
     const size = new Vector(0.8, 1.5); 
-    pos.y -= 0.5;
-    super(pos, size);
+    const position = pos.plus(new Vector(0, -0.5));
+    super(position, size);
   }
 	
   get type() {
