@@ -117,8 +117,7 @@ class Level {
   }
   
   noMoreActors(actorType) {
-    let result = this.actors.some(value => value.type == actorType); 
-    return result === false;
+    return !this.actors.some(value => value.type == actorType);
   }
   
   playerTouched(objectName, actor) {  
