@@ -101,7 +101,7 @@ class Level {
     }	    
     for(let i = up; i < down; i++) {
       for(let j = left; j < right; j++) {
-	let point = this.grid[i][j];     
+	const point = this.grid[i][j];     
         if (point !== undefined) {
           return point;
         }
@@ -158,7 +158,7 @@ class LevelParser {
   }
 
   createActors(arrayOfActors) {
-    let result = [];
+    const result = [];
     if (arrayOfActors.length === 0 || this.dictionary === undefined) {
       return [];
     } else {
